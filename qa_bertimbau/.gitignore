@@ -49,7 +49,7 @@ evaluation_figures/figures_PROPOR2026_final.ipynb
 zero_shot_llm/results/*
 
 # Exceto os arquivos de resultados finais (JSON)
-!zero_shot_llm/results/*.csv
+!zero_shot_llm/results/*.txt
 # Ignorar pastas específicas de modelos/resultados extras
 zero_shot_llm/lora_sabia_qa/
 zero_shot_llm/lora_tucano_qa/

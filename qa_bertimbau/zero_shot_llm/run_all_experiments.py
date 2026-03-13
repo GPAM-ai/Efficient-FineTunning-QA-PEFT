@@ -9,11 +9,6 @@ Ejecuta:
 4. Training LoRA Sabiá (opcional)
 5. Evaluación de todos los modelos
 6. Genera tabla final
-
-Uso:
-    CUDA_VISIBLE_DEVICES=0 python run_all_experiments.py
-    CUDA_VISIBLE_DEVICES=0 python run_all_experiments.py --skip-training
-    CUDA_VISIBLE_DEVICES=0 python run_all_experiments.py --only-zero-shot
 """
 
 import subprocess
