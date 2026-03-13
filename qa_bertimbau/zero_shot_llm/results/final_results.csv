@@ -1,0 +1,5 @@
+Model,Config,EM (%),F1 (%),Tiempo (min),Mem Pico (MB),Mem Neta (MB)
+Tucano 1B,Zero-shot,4.02,14.68,16.72,2682,8
+Sabiá 7B,Zero-shot,25.37,39.82,55.26,17737,8
+Tucano 1B,LoRA,49.47,63.7,23.4,4301,33
+Sabiá 7B,LoRA,64.53,78.44,103.5,15642,80

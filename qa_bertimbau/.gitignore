@@ -1,10 +1,68 @@
-evaluation_figures/
-checkpoints/
-*.ckpt
+# VS Code notebook metadata
+.notebook/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Virtual environments
+.env
+.venv
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# Model artifacts and checkpoints
 *.pt
 *.pth
-*.h5
-README.md
-LICENSE
-base/results/
-large/results/
+*.bin
+*.safetensors
+checkpoint-*/
+checkpoints/
+runs/
+
+# Bertimbau results (heavy checkpoints) - pero NO zero_shot_llm/results (solo JSONs livianos)
+bertimbau_base/results/
+bertimbau_large/results/
+# Ignorar tudo dentro de zero_shot_llm/results/
+zero_shot_llm/results/*
+
+# Exceto os arquivos de resultados finais (JSON)
+!zero_shot_llm/results/*.csv
+# Ignorar pastas específicas de modelos/resultados extras
+lora_sabia_qa/
+lora_tucano_qa/
+sabia_lora/
+
+# Hugging Face / transformers cache
+.cache/
+transformers_cache/
+huggingface/
+
+# Temporary archives
+*.tar.gz
+*.zip
+
+# Python packaging
+__pypackages__/
+
+# OS files
+.DS_Store
+thumbs.db
+tmp*/
