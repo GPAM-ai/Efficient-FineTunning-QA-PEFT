@@ -1,0 +1,10 @@
+evaluation_figures/
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.h5
+README.md
+LICENSE
+base/results/
+large/results/
