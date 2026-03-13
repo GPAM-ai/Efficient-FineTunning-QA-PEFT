@@ -16,10 +16,10 @@ SCRIPTS = [
     ("LoRA", "main_lora.py"),
     ("DoRA", "main_dora.py"),
     ("QLoRA (4-bit)", "main_qlora.py"),
-    ("QDoRA (8-bit)", "main_qdora.py"),
+    ("QDoRA (4-bit)", "main_qdora.py"),
 ]
 
-BASE_DIR = "/data/nina/qa_squad/qa_bertimbau/bertimbau_base"
+BASE_DIR = "/data/nina/Efficient-FineTunning-QA-PEFT/qa_bertimbau/bertimbau_base/results"
 GPU_ID = "0"
 NUM_EPOCHS = 1
 
@@ -131,7 +131,7 @@ def run_benchmark(script_name, method_name):
         print(f"  Memoria neta usada: {net_memory} MB")
         
         if process.returncode != 0:
-            print(f"  ⚠️  Error (código: {process.returncode})")
+            print(f"  Error (código: {process.returncode})")
             # Mostrar últimas líneas del error
             if stdout:
                 lines = stdout.strip().split('\n')
