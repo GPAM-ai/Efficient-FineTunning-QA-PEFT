@@ -40,6 +40,7 @@ runs/
 # Bertimbau results (heavy checkpoints) - pero NO zero_shot_llm/results (solo JSONs livianos)
 bertimbau_base/results/
 bertimbau_large/results/
+evaluation_figures/figures_PROPOR2026_final.ipynb
 # Ignorar tudo dentro de zero_shot_llm/results/
 zero_shot_llm/results/*
 
