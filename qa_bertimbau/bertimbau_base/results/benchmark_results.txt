@@ -1,0 +1,9 @@
+BENCHMARK DE MEMORIA GPU - BERTimbau Base QA
+============================================================
+Método               Mem Pico (MB)   Mem Neta (MB)   Tiempo (min) Estado
+------------------------------------------------------------
+Full Fine-tuning     14493           7242            256.6        OK
+LoRA                 3687            3681            56.1         OK
+DoRA                 4295            4289            56.1         OK
+QLoRA (4-bit)        1897            1891            56.0         OK
+QDoRA (4-bit)        2163            2157            64.7         OK

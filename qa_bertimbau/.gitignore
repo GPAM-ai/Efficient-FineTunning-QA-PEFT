@@ -37,11 +37,13 @@ checkpoint-*/
 checkpoints/
 runs/
 
-# Bertimbau results (heavy checkpoints) - pero NO zero_shot_llm/results (solo JSONs livianos)
-bertimbau_base/results/*
-!bertimbau_base/results/*.txt
-bertimbau_large/results/*
-!bertimbau_large/results/*.txt
+# Bertimbau experiment outputs
+bertimbau_base/results/**
+!bertimbau_base/results/*benchmark_results.txt
+
+bertimbau_large/results/**
+!bertimbau_large/results/*benchmark_results.txt
+
 evaluation_figures/figures_PROPOR2026_final.ipynb
 # Ignorar tudo dentro de zero_shot_llm/results/
 zero_shot_llm/results/*
@@ -49,9 +51,10 @@ zero_shot_llm/results/*
 # Exceto os arquivos de resultados finais (JSON)
 !zero_shot_llm/results/*.csv
 # Ignorar pastas específicas de modelos/resultados extras
-lora_sabia_qa/
-lora_tucano_qa/
-sabia-lora/
+zero_shot_llm/lora_sabia_qa/
+zero_shot_llm/lora_tucano_qa/
+zero_shot_llm/sabia-lora/
+
 
 # Hugging Face / transformers cache
 .cache/
