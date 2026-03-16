@@ -1,27 +1,3 @@
-# Efficient QA for Brazilian Portuguese: PEFT & Quantization on BERTimbau
-
-This repository contains the code and findings from a systematic evaluation of **Parameter-Efficient Fine-Tuning (PEFT)** and **quantization** techniques applied to **BERTimbau** for extractive Question Answering on the **SQuAD-BR** dataset.
-
-## 🚀 Overview
-As Large Language Models (LLMs) grow, computational costs become a barrier for low-resource languages. This project explores more sustainable **"Green AI"** approaches by optimizing encoder-based models for Brazilian Portuguese, proving they can remain competitive with generative models while using significantly fewer resources.
-
-## 📊 Key Results
-*   **Performance:** LoRA on BERTimbau-Large achieves **95.8%** of the baseline F1 score.
-*   **Efficiency:** Training time reduced by **73.5%**.
-*   **Optimization:** Higher learning rates (**2e-4**) improved PEFT performance by up to **+19.71 F1 points**.
-*   **Resilience:** Larger models (335M) are twice as resilient to quantization than smaller versions (110M).
-*   **Encoder vs. Generative:** BERTimbau-Base requires **3x less training time** and **4.2x less GPU memory** than generative models like Tucano or Sabiá for the same task.
-
-## 🛠 Supported Methods
-We evaluated **40 configurations** combining:
-*   **Models:** BERTimbau (Base & Large).
-*   **PEFT Methods:** LoRA, DoRA, QLoRA, and QDoRA.
-*   **Comparisons:** Exploratory benchmarks against generative models (Tucano, Sabiá).
-
-
-
--------------------------------------------------------------------
-
 # Efficient Fine-Tuning Methods for Portuguese Question Answering
 
 [![Paper](https://img.shields.io/badge/Paper-PROPOR%202026-blue)](PROPOR_2026_QA(3).pdf)
@@ -29,92 +5,69 @@ We evaluated **40 configurations** combining:
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1.0-red)](https://pytorch.org/)
 [![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-Models-yellow)](https://huggingface.co/neuralmind/bert-base-portuguese-cased)
 
-Este repositório contém o código e os resultados do artigo **"Efficient Fine-Tuning Methods for Portuguese Question Answering: A Comparative Study of PEFT on BERTimbau and Exploratory Evaluation of Generative LLMs"**, submetido ao **PROPOR 2026**.
-
-## 📝 Resumo 
-
-Embora os grandes modelos de linguagem (LLMs) tenham transformado o processamento de linguagem natural, seus custos computacionais criam barreiras de acessibilidade para línguas de baixos recursos, como o **Português Brasileiro**. Este trabalho apresenta uma avaliação sistemática de técnicas de **Parameter-Efficient Fine-Tuning (PEFT)** e quantização aplicadas ao **BERTimbau** para a tarefa de Question Answering (QA) no dataset **SQuAD-BR**.
-
-### Principais Descobertas:
-1.  **Eficiência do LoRA:** O LoRA atinge **95,8%** do desempenho do baseline no BERTimbau-Large, reduzindo o tempo de treinamento em **73,5%**.
-2.  **Sensibilidade à Taxa de Aprendizado:** Taxas de aprendizado mais altas (2e-4) são críticas para o sucesso do PEFT, resultando em ganhos de até **+19,71 pontos de F1**.
-3.  **Resiliência à Quantização:** Modelos maiores (Large) apresentam o dobro da resiliência à quantização de 4 bits em comparação aos modelos Base.
-4.  **Vantagem do Encoder:** Modelos baseados em encoder (BERTimbau) superam modelos generativos (Sabiá, Tucano) em eficiência para QA extrativo, exigindo até **4,2x menos memória GPU**.
+This repository contains the code and results for the paper **"Efficient Fine-Tuning Methods for Portuguese Question Answering: A Comparative Study of PEFT on BERTimbau and Exploratory Evaluation of Generative LLMs"**, submitted to **PROPOR 2026**.
 
 ---
 
-## 🚀 Uso Rápido
+## 📝 Abstract
 
-Siga os passos abaixo para reproduzir os experimentos do artigo, desde a preparação dos dados até a avaliação final.
+Large Language Models (LLMs) have transformed Natural Language Processing, yet their computational costs pose accessibility barriers for low-resource languages like **Brazilian Portuguese**. This work systematically evaluates **Parameter-Efficient Fine-Tuning (PEFT)** and quantization techniques applied to **BERTimbau** for Question Answering (QA) on the **SQuAD-BR** dataset.
 
-### 1. Instalação e Ambiente
-```bash
-# Clonar o repositório
-git clone https://github.com/Caio-Veloso1/green-ai-extractive-qa-pt.git
-cd green-ai-extractive-qa-pt/qa_bertimbau/bertimbau_base 
+### Key Findings:
+1.  **LoRA Efficiency:** LoRA achieves **95.8%** of baseline performance on BERTimbau-Large, reducing training time by **73.5%**.
+2.  **Learning Rate Sensitivity:** Higher learning rates (2e-4) are critical for PEFT success, yielding F1 gains of up to **+19.71 points**.
+3.  **Quantization Resilience:** Larger models (Large) exhibit twice the resilience to 4-bit quantization compared to Base models.
+4.  **Encoder Advantage:** Encoder-based models (BERTimbau) outperform generative models (Sabiá, Tucano) in efficiency for extractive QA, requiring up to **4.2x less GPU memory**.
 
-# Instalar dependências
-pip install -r requirements.txt
-```
+---
 
-### 2. Pipeline de Execução
-O fluxo de trabalho é dividido em quatro etapas principais:
+## 📊 Experimental Results
 
-| Passo | Comando | Descrição |
-| :--- | :--- | :--- |
-| **1. Preparar Dados** | `python preprocessing.py` | Pré-processamento do dataset SQuAD-BR |
-| **2. Treinar Modelo** | `python main_lora.py` | Fine-tuning com LoRA (ou use `main_qlora.py`) |
-| **3. Predição** | `python main_predict.py` | Geração de respostas no conjunto de teste |
-| **4. Avaliação** | `jupyter notebook analysis_bertimbau_base.ipynb` | Análise detalhada dos resultados e métricas |
+### 1. Overview: F1 Score Across All Configurations
+The heatmap below consolidates results from all 40 experiments, crossing PEFT methods, architectures (Base vs. Large), learning rates, and epochs. Note that PEFT methods (especially LoRA and DoRA) maintain stability even when Full Fine-Tuning (Full FT) collapses under high learning rates in the Large model.
 
-## 📊 Resultados Experimentais
-
-### 1. Visão Geral: F1 Score em Todas as Configurações
-O heatmap abaixo consolida os resultados de todos os 40 experimentos, cruzando métodos PEFT, arquiteturas (Base vs. Large), taxas de aprendizado e épocas. Note que os métodos PEFT (especialmente LoRA e DoRA) mantêm a estabilidade mesmo quando o Full Fine-Tuning (Full FT) colapsa sob taxas de aprendizado elevadas no modelo Large.
-
-<img width="1609" height="610" alt="9475c0d2-1" src="https://github.com/user-attachments/assets/4446ca08-4c51-4cf9-b54b-aca224f9cb60" />
+<img width="1569" height="610" alt="6ec131ab-1" src="https://github.com/user-attachments/assets/235bb053-9f50-422b-9663-480785397822" />
 
 
-### 2. Performance (F1 Score) vs. Taxa de Aprendizado
-Abaixo, comparamos o desempenho de diferentes métodos PEFT (LoRA, QLoRA, DoRA, QDoRA) sob duas taxas de aprendizado distintas. Note o colapso do Full Fine-Tuning (Full FT) no modelo Large quando utilizada uma taxa de aprendizado alta, enquanto os métodos PEFT permanecem estáveis.
+### 2. Impact of Learning Rate
+This section details the direct performance comparison under two distinct learning rates. The graph highlights how PEFT benefits from more aggressive rates (2e-4) to escape local minima.
 
 <img width="1380" height="1580" alt="160d2f49-1" src="https://github.com/user-attachments/assets/5689f666-e24c-40ab-b5e1-8f191581bfd7" />
 
-
-### 3. Consumo de Memória GPU
-Os métodos de quantização (QLoRA e QDoRA) permitem o treinamento de modelos Large em GPUs de consumo, reduzindo o uso de memória em até **86,9%**.
+### 3. GPU Memory Consumption
+Quantization methods (QLoRA and QDoRA) enable training Large models on consumer-grade GPUs, reducing memory usage by up to **86.9%**.
 
 <img width="797" height="606" alt="ebc7860c-1" src="https://github.com/user-attachments/assets/47060259-7926-4b91-9548-6c689fd9a453" />
 
-
 ---
 
-## 💡 Hipóteses
+## 🛠 Supported Methods
 
-O estudo foi guiado por três hipóteses centrais:
-*   **H1 (Eficiência):** Métodos PEFT podem igualar o desempenho do fine-tuning total com custo reduzido.
-*   **H2 (Robustez de Escala):** Modelos maiores são mais resilientes à quantização agressiva.
-*   **H3 (Otimização):** PEFT requer taxas de aprendizado significativamente maiores para convergir.
 
-### Métodos Avaliados
-| Método | Descrição | Vantagem Principal |
+This study was guided by three core hypotheses:
+*   **H1 (Efficiency):** PEFT methods can match full fine-tuning performance with reduced computational cost.
+*   **H2 (Scale Robustness):** Larger models are more resilient to aggressive quantization.
+*   **H3 (Optimization Sensitivity):** PEFT requires significantly higher learning rates for convergence.
+
+### Evaluated Methods
+| Method | Description | Key Advantage |
 | :--- | :--- | :--- |
-| **Full FT** | Fine-tuning de todos os parâmetros | Baseline de performance |
-| **LoRA** | Low-Rank Adaptation | Redução drástica de parâmetros treináveis |
-| **QLoRA** | Quantized LoRA (4-bit) | Mínimo uso de memória GPU |
-| **DoRA** | Weight-Decomposed Low-Rank Adaptation | Estabilidade direcional no aprendizado |
-| **QDoRA** | Quantized DoRA | Combinação de decomposição e quantização |
+| **Full FT** | Fine-tuning all parameters | Performance baseline |
+| **LoRA** | Low-Rank Adaptation | Drastically reduced trainable parameters |
+| **QLoRA** | Quantized LoRA (4-bit) | Minimal GPU memory usage |
+| **DoRA** | Weight-Decomposed Low-Rank Adaptation | Directional stability in learning |
+| **QDoRA** | Quantized DoRA | Combines decomposition and quantization |
 
 ---
 
-## 🧪 Configuração Experimental
+## 🧪 Experimental Configuration
 
 ### Hardware & Software
 *   **GPU:** NVIDIA RTX A4500 (20GB VRAM)
 *   **Frameworks:** PyTorch 2.1.0, Transformers 4.36.0, PEFT 0.7.1, bitsandbytes 0.41.0
-*   **Dataset:** SQuAD-BR (v1.1 traduzido para Português)
+*   **Dataset:** SQuAD-BR (v1.1 translated to Portuguese)
 
-### Hiperparâmetros PEFT
+### PEFT Hyperparameters
 *   **Rank (r):** 16
 *   **Alpha (α):** 32
 *   **Target Modules:** query, key, value, output projection
@@ -123,22 +76,48 @@ O estudo foi guiado por três hipóteses centrais:
 
 ---
 
-## 📈 Comparação com Modelos Generativos
+## 📈 Comparison with Generative Models
 
-Realizamos uma avaliação exploratória com os modelos **Tucano (1.1B)** e **Sabiá (7B)**. Embora o Sabiá-7B com LoRA atinja um F1 competitivo (78,10%), ele exige significativamente mais recursos que o BERTimbau.
+An exploratory evaluation was conducted with **Tucano (1.1B)** and **Sabiá (7B)**. While Sabiá-7B with LoRA achieves a competitive F1 (78.10%), it demands significantly more resources than BERTimbau.
 
-| Modelo | Método | F1 Score (%) | Memória GPU (MB) | Tempo (hh:mm:ss) |
+| Model | Method | F1 Score (%) | GPU Memory (MB) | Time (hh:mm:ss) |
 | :--- | :--- | :---: | :---: | :---: |
-| **BERTimbau-Base** | LoRA | 78,01 | 3.687 | 00:31:37 |
-| **BERTimbau-Large** | LoRA | **81,32** | 9.019 | 01:23:41 |
-| **Sabiá-7B** | LoRA | 78,10 | 15.642 | 01:31:15 |
-| **Tucano-1.1B** | LoRA | 63,86 | 4.301 | 00:25:28 |
+| **BERTimbau-Base** | LoRA | 78.01 | 3,687 | 00:31:37 |
+| **BERTimbau-Large** | LoRA | **81.32** | 9,019 | 01:23:41 |
+| **Sabiá-7B** | LoRA | 78.10 | 15,642 | 01:31:15 |
+| **Tucano-1.1B** | LoRA | 63.86 | 4,301 | 00:25:28 |
 
 ---
 
-## 📚 Citação
+## 🚀 Quick Start
 
-Se você utilizar este trabalho ou os dados aqui apresentados, por favor cite o artigo original:
+Follow these steps to reproduce the experiments, from data preparation to final evaluation.
+
+### 1. Setup and Environment
+```bash
+# Clone the repository
+git clone https://github.com/Caio-Veloso1/green-ai-extractive-qa-pt.git
+cd green-ai-extractive-qa-pt/qa_bertimbau/bertimbau_base 
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### 2. Execution Pipeline
+The workflow is divided into four main stages:
+
+| Step | Command | Description |
+| :--- | :--- | :--- |
+| **1. Prepare Data** | `python preprocessing.py` | Pre-process the SQuAD-BR dataset |
+| **2. Train Model** | `python main_lora.py` | Fine-tune with LoRA (or use `main_qlora.py`) |
+| **3. Predict** | `python main_predict.py` | Generate answers on the test set |
+| **4. Evaluate** | `jupyter notebook analysis_bertimbau_base.ipynb` | Detailed analysis of results and metrics |
+
+---
+
+## 📚 Citation
+
+If you use this work or the data presented herein, please cite the original paper:
 
 ```bibtex
 @inproceedings{nina2026efficient,
@@ -151,5 +130,5 @@ Se você utilizar este trabalho ou os dados aqui apresentados, por favor cite o 
 ```
 
 ---
-*Este repositório segue os princípios de **Green AI**, promovendo abordagens sustentáveis e acessíveis para o processamento de linguagem natural em português.*
+*This repository adheres to **Green AI** principles, promoting sustainable and accessible approaches to natural language processing in Portuguese.*
 
