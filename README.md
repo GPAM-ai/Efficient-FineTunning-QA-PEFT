@@ -38,7 +38,7 @@ This section details the direct performance comparison under two distinct learni
 ### 3. GPU Memory Consumption
 Quantization methods (QLoRA and QDoRA) enable training Large models on consumer-grade GPUs, reducing memory usage by up to **86.9%**.
 
-<img width="1609" height="610" alt="9475c0d2-1" src="https://github.com/user-attachments/assets/09ae717d-3bb9-4e60-84a2-d54a50496e2d" />
+<img width="797" height="606" alt="ebc7860c-1" src="https://github.com/user-attachments/assets/c5994c2c-a04f-4d24-bf1c-6d1625f6c7b1" />
 
 ---
 
