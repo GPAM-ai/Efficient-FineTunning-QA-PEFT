@@ -32,12 +32,13 @@ The heatmap below consolidates results from all 40 experiments, crossing PEFT me
 ### 2. Impact of Learning Rate
 This section details the direct performance comparison under two distinct learning rates. The graph highlights how PEFT benefits from more aggressive rates (2e-4) to escape local minima.
 
-<img width="1380" height="1580" alt="160d2f49-1" src="https://github.com/user-attachments/assets/5689f666-e24c-40ab-b5e1-8f191581bfd7" />
+<img width="1380" height="1580" alt="160d2f49-1" src="https://github.com/user-attachments/assets/c43b3790-5a92-4061-aa29-76055cefa2ce" />
+
 
 ### 3. GPU Memory Consumption
 Quantization methods (QLoRA and QDoRA) enable training Large models on consumer-grade GPUs, reducing memory usage by up to **86.9%**.
 
-<img width="797" height="606" alt="ebc7860c-1" src="https://github.com/user-attachments/assets/47060259-7926-4b91-9548-6c689fd9a453" />
+<img width="1609" height="610" alt="9475c0d2-1" src="https://github.com/user-attachments/assets/09ae717d-3bb9-4e60-84a2-d54a50496e2d" />
 
 ---
 
